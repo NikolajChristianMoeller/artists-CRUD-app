@@ -1,3 +1,5 @@
+"use strict"
+
 import fs from "fs/promises";
 import express from "express";
 import cors from "cors";
@@ -9,64 +11,67 @@ app.use(express.json()); // to parse JSON bodies
 app.use(cors());
 
 app.listen(port, () => {
-  console.log(`App running on http://localhost:${port}`);
+  console.log(`Server running on http://localhost:${port}`);
 });
 
 app.get("/", (request, response) => {
-  response.send("Node.js Users REST API 🎉");
+  response.send("Hey there express");
 });
 
-app.get("/test", (request, response) => {
-  response.send("This is a test route");
+// GET artists
+app.get("/artists", async (request, response) => {
+  const data = await fs.readFile("./data/artists.json");
+  const artists = JSON.parse(data);
+  response.json(artists);  
 });
 
-app.get("/users", async (request, response) => {
-  const data = await fs.readFile("data.json");
-  const users = JSON.parse(data);
-  response.json(users);
-});
-
+// POST/CREATE new artist
 app.post("/users", async (request, response) => {
-  const newUser = request.body;
-  newUser.id = new Date().getTime();
-  console.log(newUser);
+  const newArtist = request.body;
+  newArtist.id = new Date().getTime();
 
-  const data = await fs.readFile("data.json");
-  const users = JSON.parse(data);
+  const data = await fs.readFile("./data/artists.json");
+  const artists = JSON.parse(data);
 
-  users.push(newUser);
-  console.log(newUser);
-  fs.writeFile("data.json", JSON.stringify(users));
+  users.push(newArtist);
+  console.log(newArtist);
+  fs.writeFile("./data/artists.json", JSON.stringify(artists));
   response.json(users);
 });
 
-app.put("/users/:id", async (request, response) => {
+// PUT/UPDATE artist
+app.put("/artists/:id", async (request, response) => {
   const id = Number(request.params.id);
-  console.log(id);
 
-  const data = await fs.readFile("data.json");
-  const users = JSON.parse(data);
+  const data = await fs.readFile("./data/artists.json");
+  const artists = JSON.parse(data);
 
-  let userToUpdate = users.find(user => user.id === id);
+  let artistUpdate = artists.find(artist => artist.id === id);
+
   const body = request.body;
   console.log(body);
-  userToUpdate.image = body.image;
-  userToUpdate.mail = body.mail;
-  userToUpdate.name = body.name;
-  userToUpdate.title = body.title;
+  artistUpdate.name = body.name
+  artistUpdate.birthDate = body.birthDate
+  artistUpdate.activeSince = body.activeSince
+  artistUpdate.genres = body.genres
+  artistUpdate.labels = body.labels
+  artistUpdate.website = body.website
+  artistUpdate.image = body.image
+  artistUpdate.shortDescription = body.shortDescription
 
-  fs.writeFile("data.json", JSON.stringify(users));
-  response.json(users);
+  fs.writeFile("./data/artists.json", JSON.stringify(artists));
+  response.json(artists);
 });
 
-app.delete("/users/:id", async (request, response) => {
+// DELETE artist
+app.delete("/artists/:id", async (request, response) => {
   const id = Number(request.params.id);
 
-  const data = await fs.readFile("data.json");
-  const users = JSON.parse(data);
+  const data = await fs.readFile("./data/artists.json");
+  const artists = JSON.parse(data);
 
-  const newUsers = users.filter(user => user.id !== id);
-  fs.writeFile("data.json", JSON.stringify(newUsers));
+  const newArtists = artists.filter(artist => artist.id !== id);
+  fs.writeFile("./data/artists.json", JSON.stringify(newArtists));
 
-  response.json(users);
+  response.json(artists);
 });

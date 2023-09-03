@@ -8,10 +8,9 @@ async function getArtists() {
   return prepareData(data);
 }
 
-async function createArtist(id, artistName, name, image, birthDate, activeSince, genres, labels, website, shortDescription) {
+async function createArtist(id, name, image, birthDate, activeSince, genres, labels, website, shortDescription) {
   const newArtist = {
     id: id,
-    artistName: artistName,
     name: name,
     image: image,
     birthDate: birthDate,
@@ -31,11 +30,10 @@ async function createArtist(id, artistName, name, image, birthDate, activeSince,
 }
 
 //  Updates an existing artist
-async function updateArtist(id, artistName, name, image, birthDate, activeSince, genres, labels, website, shortDescription) {
+async function updateArtist(id, name, image, birthDate, activeSince, genres, labels, website, shortDescription) {
   // artist object we update
   const artistToUpdate = {
     id: id,
-    artistName: artistName,
     name: name,
     image: image,
     birthDate: birthDate,

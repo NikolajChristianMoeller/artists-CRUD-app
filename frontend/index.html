@@ -49,10 +49,8 @@
 
 <dialog id="artist-modal">
   <img id="artist-image" src="">
-  <h3 id="civil-name"></h3>
-  <p>Birth: <span id="artist-birth"></span></p>
-  <p>Artist Name: <span id="artist-name"></span></p>
-  <p>Date of Birth: <span id="artist-birth"></span></p>
+  <h3 id="artist-name"></h3>
+  <p>Birth Date: <span id="artist-birth"></span></p>
   <p>Active Since: <span id="artist-active-since"></span></p>
   <p>Genres: <span id="artist-genres"></span></p>
   <p>Labels: <span id="artist-labels"></span></p>
@@ -68,14 +66,11 @@
     <div class="create-dialog-container">
       <h2 class="create-dialog-head">Create new artist</h2>
       <form id="form-create-artist" method="dialog" class="create-dialog-form">
-        <label for="name">Civil Name
-          <input type="text" name="name" id="civilname" placeholder="Input artist's civil name" size="50" required/>
+        <label for="name">Name
+          <input type="text" name="name" id="civilname" placeholder="Input artist's name" size="50" required/>
         </label>
 
         <label for="image">Image <input type="url" name="image" id="image"placeholder="Input artist's image" size="50" required/>
-        </label>
-
-        <label for="artistname">Artist Name <input type="text" name="artistname" id="artistname" placeholder="Input artist's artist name" size="50"/>
         </label>
 
         <label for="birthdate">Date of Birth <input type="text" name="birthdate" id="birthdate" placeholder="Input artist's date of birth" size="50"/>
@@ -120,14 +115,11 @@
   <dialog id="dialog-update-artist">
       <h2>Update artist</h2>
       <form id="form-update-artist" method="dialog">
-        <label for="name">Civil Name</label>
+        <label for="name">Name</label>
         <input type="text" name="name" />
 
         <label for="image">Image</label>
         <input type="url" name="image" />
-
-        <label for="artistname">Artist Name</label>
-        <input type="text" name="artistname" />
 
         <label for="birthdate">Date of Birth</label>
         <input type="text" name="birthdate" />

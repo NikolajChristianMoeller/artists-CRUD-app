@@ -9,13 +9,9 @@ function initApp() {
   updateArtistsGrid();
   document.querySelector("#btn-create-artist").addEventListener("click", showCreateArtistDialog);
   document.querySelector("#form-create-artist").addEventListener("submit", createArtistClicked);
-
   document.querySelector("#form-update-artist .btn-cancel").addEventListener("click", cancelUpdate);
-
   document.querySelector("#form-create-artist .btn-cancel").addEventListener("click", cancelCreate);
-
   document.querySelector("#form-update-artist").addEventListener("submit", updateArtistClicked);
-
   document.querySelector("#sortbyselect").addEventListener("change", event => showArtists(sortByOption(event.target.value)));
   document.querySelector("#input-search").addEventListener("keyup", event => showArtists(searchByName(event.target.value)));
   document.querySelector("#input-search").addEventListener("search", event => showArtists(searchByName(event.target.value)));
@@ -40,7 +36,6 @@ function updateClicked(artistObject) {
   //the following makes info from object be displayed in the ModalWindow to provide
   //Feedback to the user
   updateForm.id.value = artistObject.id;
-  updateForm.artistName.value = artistObject.artistName; //sets value of the form title to that of the object.
   updateForm.name.value = artistObject.name;
   updateForm.image.value = artistObject.image;
   updateForm.birthDate.value = artistObject.birthDate;
@@ -64,7 +59,6 @@ async function createArtistClicked(event) {
   event.preventDefault();
   const form = document.querySelector("#form-create-artist");
   const id = form.id.value;
-  const artistName = form.artistName.value;
   const name = form.name.value;
   const image = form.image.value;
   const birthDate = form.birthDate.value;
@@ -74,7 +68,7 @@ async function createArtistClicked(event) {
   const website = form.website.value;
   const shortDescription = form.shortDescription.value;
 
-  const response = await createArtist(id, artistName, name, image, birthDate, activeSince, genres, labels, website, shortDescription);
+  const response = await createArtist(id, name, image, birthDate, activeSince, genres, labels, website, shortDescription);
   if (response.ok) {
     document.querySelector("#dialog-create-artist").close();
     updateArtistsGrid();
@@ -91,7 +85,6 @@ async function updateArtistClicked(event) {
   event.preventDefault();
   const form = document.querySelector("#form-update-artist");
   // extract the values from inputs in the form
-  const artistName = form.artistName.value;
   const name = form.name.value;
   const image = form.image.value;
   const birthDate = form.birthDate.value;
@@ -105,7 +98,7 @@ async function updateArtistClicked(event) {
 
   //puts in data from from passes it to updateartist
 
-  const response = await updateArtist(id, artistName, name, image, birthDate , activeSince, genres, labels, website, shortDescription); //match the parameters in updatepost!!!
+  const response = await updateArtist(id, name, image, birthDate , activeSince, genres, labels, website, shortDescription); //match the parameters in updatepost!!!
   if (response.ok) {
     document.querySelector("#dialog-update-artist").close();
     updateArtistsGrid();
@@ -185,7 +178,7 @@ function showArtist(artistObject) {
         <div class="clickable">    
             <img src="${artistObject.image}" />
             <h3><b>${artistObject.name}</b></h3>
-            <p>Labels: ${artistObject.Labels}</p>
+            <p>Labels: ${artistObject.labels}</p>
             <p>Website: ${artistObject.website}</p>
             <p>Short Description: ${artistObject.shortDescription}</p>
         </div>
@@ -210,7 +203,7 @@ function showArtist(artistObject) {
 function showArtistModal(artistObject) {
   const modal = document.querySelector("#artist-modal");
   modal.querySelector("#artist-image").src = artistObject.image;
-  modal.querySelector("#artist-name").textContent = artistObject.artistName;
+  modal.querySelector("#artist-name").textContent = artistObject.name;
   modal.querySelector("#artist-birth").textContent = artistObject.artistBirth;
   modal.querySelector("#artist-active-since").textContent = artistObject.artistActiveSince;
   modal.querySelector("#artist-genres").textContent = artistObject.genres;
