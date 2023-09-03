@@ -1,11 +1,9 @@
 import { prepareData } from "./helpers.js";
 
-const endpoint = "/backend/data/artists.json";
-
 async function getArtists() {
-  const response = await fetch(`${endpoint}/artists.json`);
+  const response = await fetch(`${endpoint}/artists`);
   const data = await response.json();
-  return prepareData(data);
+  return data;
 }
 
 async function createArtist(id, name, image, birthDate, activeSince, genres, labels, website, shortDescription) {
@@ -22,7 +20,7 @@ async function createArtist(id, name, image, birthDate, activeSince, genres, lab
   };
   console.log(newArtist);
   const json = JSON.stringify(newArtist);
-  const response = await fetch(`${endpoint}/artists.json`, {
+  const response = await fetch(`${endpoint}/artists`, {
     method: "POST",
     body: json,
   });
@@ -30,10 +28,9 @@ async function createArtist(id, name, image, birthDate, activeSince, genres, lab
 }
 
 //  Updates an existing artist
-async function updateArtist(id, name, image, birthDate, activeSince, genres, labels, website, shortDescription) {
+async function updateArtist(name, image, birthDate, activeSince, genres, labels, website, shortDescription) {
   // artist object we update
   const artistToUpdate = {
-    id: id,
     name: name,
     image: image,
     birthDate: birthDate,
@@ -46,9 +43,10 @@ async function updateArtist(id, name, image, birthDate, activeSince, genres, lab
   // Converts the JS object to JSON string
   const json = JSON.stringify(artistToUpdate);
   // PUT fetch request with JSON in the body. Calls the specific element in resource
-  const response = await fetch(`${endpoint}/artists/${id}.json`, {
+  const response = await fetch(`${endpoint}/artists/${id}`, {
     method: "PUT",
     body: json,
+    headers: { "Content-Type": "application/json" },
   });
   // Checks if response is ok - if the response is successful
   return response;
@@ -56,7 +54,7 @@ async function updateArtist(id, name, image, birthDate, activeSince, genres, lab
 
 async function deleteArtist(artistObject) {
   const id = artistObject.id;
-  const response = await fetch(`${endpoint}/artists/${id}.json`, {
+  const response = await fetch(`${endpoint}/artists/${id}`, {
     method: "DELETE",
   });
   return response;

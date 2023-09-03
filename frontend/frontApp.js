@@ -1,6 +1,9 @@
 import { getArtists, createArtist, updateArtist, deleteArtist } from "./rest-service.js";
 import { filterByRace, sortByOption, searchByName } from "./helpers.js";
 
+
+// const endpoint = "/backend/data/artists.json";
+const endpoint = "http://localhost:3333";
 let artistList;
 
 window.addEventListener("load", initApp);
