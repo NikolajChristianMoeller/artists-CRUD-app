@@ -209,7 +209,7 @@ function showArtistModal(artistObject) {
   modal.querySelector("#artist-image").src = artistObject.image;
   modal.querySelector("#artist-name").textContent = artistObject.name;
   modal.querySelector("#artist-birth").textContent = artistObject.artistBirth;
-  modal.querySelector("#artist-active-since").textContent = artistObject.artistActiveSince;
+  modal.querySelector("#artist-active-since").textContent = artistObject.activeSince;
   modal.querySelector("#artist-genres").textContent = artistObject.genres;
   modal.querySelector("#artist-labels").textContent = artistObject.labels;
   modal.querySelector("#artist-website").textContent = artistObject.website;
