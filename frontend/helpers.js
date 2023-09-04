@@ -1,4 +1,4 @@
-import { artistList } from "./script.js";
+import { artistList } from "./frontApp.js";
 
 function searchByName(searchValue) {
   searchValue = searchValue.toLowerCase().trim();
@@ -33,15 +33,16 @@ function filterByRace(inputValue) {
   }
 }
 
-// function prepareData(dataObject) {
-//   const artistArray = [];
-//   for (const key in dataObject) {
-//     const artistObject = dataObject[key];
-//     artistObject.id = key;
-//     artistArray.push(artistObject);
-//   }
-//   console.log(artistArray);
-//   return artistArray;
-// }
+function prepareData(dataObject) {
+  const artistArray = [];
+  for (const key in dataObject) {
+    const artistObject = dataObject[key];
+    artistObject.id = key;
+    artistArray.push(artistObject);
+  }
+  console.log(artistArray);
+  return artistArray;
+}
 
+// export prepareData
 export { prepareData, filterByRace, sortByOption, searchByName };
