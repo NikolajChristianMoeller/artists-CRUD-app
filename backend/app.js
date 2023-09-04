@@ -5,7 +5,7 @@ import express from "express";
 import cors from "cors";
 
 const app = express();
-const port = 3333;
+const port = 3000;
 
 app.use(express.json()); // to parse JSON bodies
 app.use(cors());
@@ -26,17 +26,17 @@ app.get("/artists", async (request, response) => {
 });
 
 // POST/CREATE new artist
-app.post("/users", async (request, response) => {
+app.post("/artists", async (request, response) => {
   const newArtist = request.body;
   newArtist.id = new Date().getTime();
 
   const data = await fs.readFile("./data/artists.json");
   const artists = JSON.parse(data);
 
-  users.push(newArtist);
+  artists.push(newArtist);
   console.log(newArtist);
   fs.writeFile("./data/artists.json", JSON.stringify(artists));
-  response.json(users);
+  response.json(artists);
 });
 
 // PUT/UPDATE artist

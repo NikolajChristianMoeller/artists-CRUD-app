@@ -1,14 +1,15 @@
 import { prepareData } from "./helpers.js";
 
+const endpoint = "http://localhost:3000";
+
 async function getArtists() {
   const response = await fetch(`${endpoint}/artists`);
   const data = await response.json();
   return data;
 }
 
-async function createArtist(id, name, image, birthDate, activeSince, genres, labels, website, shortDescription) {
+async function createArtist(name, image, birthDate, activeSince, genres, labels, website, shortDescription) {
   const newArtist = {
-    id: id,
     name: name,
     image: image,
     birthDate: birthDate,
@@ -23,6 +24,9 @@ async function createArtist(id, name, image, birthDate, activeSince, genres, lab
   const response = await fetch(`${endpoint}/artists`, {
     method: "POST",
     body: json,
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
   return response;
 }

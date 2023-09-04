@@ -2,8 +2,8 @@ import { getArtists, createArtist, updateArtist, deleteArtist } from "./rest-ser
 import { filterByRace, sortByOption, searchByName } from "./helpers.js";
 
 
-const endpoint = "/backend/data/artists.json";
-// const endpoint = "http://localhost:3333";
+// const endpoint = "/backend/data/artists.json";
+// const endpoint = "http://localhost:3000";
 let artistList;
 
 window.addEventListener("load", initApp);
@@ -38,7 +38,8 @@ function updateClicked(artistObject) {
 
   //the following makes info from object be displayed in the ModalWindow to provide
   //Feedback to the user
-  updateForm.id.value = artistObject.id;
+  // updateForm.id.value = artistObject.id;
+  console.log(artistObject);
   updateForm.name.value = artistObject.name;
   updateForm.image.value = artistObject.image;
   updateForm.birthDate.value = artistObject.birthDate;
@@ -61,7 +62,7 @@ function updateClicked(artistObject) {
 async function createArtistClicked(event) {
   event.preventDefault();
   const form = document.querySelector("#form-create-artist");
-  const id = form.id.value;
+  // const id = form.id.value;
   const name = form.name.value;
   const image = form.image.value;
   const birthDate = form.birthDate.value;
@@ -71,7 +72,7 @@ async function createArtistClicked(event) {
   const website = form.website.value;
   const shortDescription = form.shortDescription.value;
 
-  const response = await createArtist(id, name, image, birthDate, activeSince, genres, labels, website, shortDescription);
+  const response = await createArtist(name, image, birthDate, activeSince, genres, labels, website, shortDescription);
   if (response.ok) {
     document.querySelector("#dialog-create-artist").close();
     updateArtistsGrid();
@@ -101,7 +102,7 @@ async function updateArtistClicked(event) {
 
   //puts in data from from passes it to updateartist
 
-  const response = await updateArtist(id, name, image, birthDate , activeSince, genres, labels, website, shortDescription); //match the parameters in updatepost!!!
+  const response = await updateArtist(name, image, birthDate , activeSince, genres, labels, website, shortDescription); //match the parameters in updatepost!!!
   if (response.ok) {
     document.querySelector("#dialog-update-artist").close();
     updateArtistsGrid();
