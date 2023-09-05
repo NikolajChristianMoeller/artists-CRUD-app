@@ -69,6 +69,13 @@ How to use the Frontend
 
 
 
+
+
+
+
+
+
+
 My first project for 2nd semester.
 
 How to run my app:
@@ -88,5 +95,20 @@ To start the app you need to run the following commands:
     npm start
 
 4. The app should be running!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
