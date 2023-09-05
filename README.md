@@ -1,12 +1,12 @@
-Simple CRUD App Installation Guide
+This his how you install my app!
 
-This guide will walk you through the installation process for my CRUD (Create, Read, Update, Delete) web application. This application allows you to manage a list of artists to look up various information about them.
+This guide will walk you through the installation process for my CRUD web application. This application allows you to manage a list of artists to look up various information about them.
 
 Prerequisites
 
 Before you begin, ensure you have the following prerequisites installed on your system:
 
-1. Web Server: You need a web server environment like Apache, Nginx, or a development server like XAMPP or WAMP, depending on your platform.
+1. Web Server: You need a web server environment browser! Like Google Chrome, Firefox or Safari.
 
 2. Database: A relational database system like MySQL, PostgreSQL, or SQLite to store data.
 
@@ -36,9 +36,32 @@ If you don't have Git, you can download the project as a ZIP file and extract it
 5.  Access the Application:
     * Open your web browser.
     * Enter the URL where the application is hosted (e.g., http://localhost3000).
-    * You should now be able to access and use the CRUD application.
+    * You should now be able to access and use my CRUD app.
 
 Usage
 
 * Use the application to create, read, update, and delete items as needed.
 * Refer to the project documentation or README for specific usage instructions, if available.
+
+
+My first project for 2nd semester.
+
+How to run my app:
+
+To start the app you need to run the following commands:
+
+1. Open up the terminal and write:
+    
+    cd .\artists-CRUD-app\
+
+2. Install all the modules with:
+
+    npm install
+
+3. Start the app by typing:
+
+    npm start
+
+4. The app should be running!
+
+
