@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: Lucida Handwriting, cursive;
+  font-family:Arial, Helvetica, sans-serif;
   line-height: 1.6;
   /* background-color: rgba(189, 184, 184, 0.5); */
   background-image: url(https://online.berklee.edu/takenote/wp-content/uploads/2019/03/killerHooks-1920x1200.png);
@@ -17,7 +17,7 @@ body {
 /* Header */
 
 header {
-  background-color: #A0522D;
+  background-color: #7871bf;
   color: #fbc841;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -239,11 +239,15 @@ button {
   padding: 0.5em 1em;
   width: 100%;
   max-width: 380px;
-  background-color: #bdd076;
+  background-color: #60da76;
 }
 
 .btn-delete, .btn-cancel {
   background-color: rgb(245, 123, 123);
+}
+
+.btn-favorite {
+  background-color: yellow
 }
 
 header button {
