@@ -1,6 +1,6 @@
 Simple CRUD App Installation Guide
 
-This guide will walk you through the installation process for a basic CRUD (Create, Read, Update, Delete) web application. This application allows you to manage a list of items, such as tasks, contacts, or notes.
+This guide will walk you through the installation process for my CRUD (Create, Read, Update, Delete) web application. This application allows you to manage a list of artists to look up various information about them.
 
 Prerequisites
 
@@ -35,7 +35,7 @@ If you don't have Git, you can download the project as a ZIP file and extract it
 
 5.  Access the Application:
     * Open your web browser.
-    * Enter the URL where the application is hosted (e.g., http://localhost/artists-CRUD-app/).
+    * Enter the URL where the application is hosted (e.g., http://localhost3000).
     * You should now be able to access and use the CRUD application.
 
 Usage

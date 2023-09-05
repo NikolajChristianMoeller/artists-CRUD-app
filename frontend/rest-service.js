@@ -5,7 +5,7 @@ const endpoint = "http://localhost:3000";
 async function getArtists() {
   const response = await fetch(`${endpoint}/artists`);
   const data = await response.json();
-  return data;
+  return prepareData(data);
 }
 
 async function createArtist(name, image, birthDate, activeSince, genres, labels, website, shortDescription) {
@@ -32,7 +32,7 @@ async function createArtist(name, image, birthDate, activeSince, genres, labels,
 }
 
 //  Updates an existing artist
-async function updateArtist(name, image, birthDate, activeSince, genres, labels, website, shortDescription) {
+async function updateArtist(id, name, image, birthDate, activeSince, genres, labels, website, shortDescription) {
   // artist object we update
   const artistToUpdate = {
     name: name,

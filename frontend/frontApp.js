@@ -102,7 +102,7 @@ async function updateArtistClicked(event) {
 
   //puts in data from from passes it to updateartist
 
-  const response = await updateArtist(name, image, birthDate , activeSince, genres, labels, website, shortDescription); //match the parameters in updatepost!!!
+  const response = await updateArtist(id, name, image, birthDate , activeSince, genres, labels, website, shortDescription); //match the parameters in updatepost!!!
   if (response.ok) {
     document.querySelector("#dialog-update-artist").close();
     updateArtistsGrid();
@@ -182,13 +182,11 @@ function showArtist(artistObject) {
         <div class="clickable">    
             <img src="${artistObject.image}" />
             <h3><b>${artistObject.name}</b></h3>
-            <p>Labels: ${artistObject.labels}</p>
-            <p>Website: ${artistObject.website}</p>
-            <p>Short Description: ${artistObject.shortDescription}</p>
         </div>
             <div class="btns">
                 <button class="btn-delete">Delete</button>
                 <button class="btn-update">Update</button>
+                <button class="btn-favorite">Favorite</button>
             </div>
         </article>
     `;

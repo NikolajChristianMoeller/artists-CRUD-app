@@ -12,11 +12,11 @@ function searchByName(searchValue) {
 function sortByOption(sortValue) {
   if (sortValue === "name") {
     return artistList.sort((a, b) => a.name.localeCompare(b.name));
-  } else if (sortValue === "title") {
-    return artistList.sort((a, b) => a.title.localeCompare(b.title));
-  } else if (sortValue === "race") {
-    return artistList.sort((a, b) => a.race.localeCompare(b.race));
-  }
+  } else if (sortValue === "birthDate") {
+    return artistList.sort((a, b) => a.birthDate.localeCompare(b.birthDate));
+  } else if (sortValue === "website") {
+    return artistList.sort((a, b) => a.website.localeCompare(b.website));
+  } 
 }
 
 function filterByRace(inputValue) {
