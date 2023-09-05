@@ -44,6 +44,31 @@ Usage
 * Refer to the project documentation or README for specific usage instructions, if available.
 
 
+How to install and run the app
+
+1. Download the files
+2. Open up your terminal, either in VS code or your normal terminal.
+3. http://localhost:3000 will be the port you will be using. Open the browser and put in:
+
+    http://localhost:3000
+
+How to use the Frontend
+
+1. Sort: Sort artists based on selected properties.
+
+2. Favorite: Sorts artists by the true or false method
+
+3. Search: Search the app for a desire artist you want to have the app show.
+
+
+
+
+
+
+
+
+
+
 My first project for 2nd semester.
 
 How to run my app:
