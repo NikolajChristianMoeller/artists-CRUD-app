@@ -62,21 +62,14 @@ app.put("/artists/:id", async (request, response) => {
   const data = await fs.readFile("./data/artists.json");
   const artists = JSON.parse(data);
 
-  let artistUpdate = artists.find(artist => artist.id === id);
+  let artistUpdate = artists.find(artist => artist.id !== id);
 
-  const body = request.body;
-  console.log(body);
-  artistUpdate.name = body.name;
-  artistUpdate.birthDate = body.birthDate;
-  artistUpdate.activeSince = body.activeSince;
-  artistUpdate.genres = body.genres;
-  artistUpdate.labels = body.labels;
-  artistUpdate.website = body.website;
-  artistUpdate.image = body.image;
-  artistUpdate.shortDescription = body.shortDescription;
+  artistUpdate.push(request.body);
 
-  fs.writeFile("./data/artists.json", JSON.stringify(artists));
-  response.json(artists);
+  fs.writeFile("./data/artists.json", JSON.stringify(artistUpdate));
+  response.json(artistUpdate);
+
+  
   /*
   if (!result) {
   response.status(404).json({ error: "Artist not found!" });
@@ -95,6 +88,21 @@ app.delete("/artists/:id", async (request, response) => {
 
   const newArtists = artists.filter(artist => artist.id !== id);
   await fs.writeFile("./data/artists.json", JSON.stringify(newArtists));
+
+  response.json(artists);
+});
+
+// FAVORITE artist
+app.patch("/artists/:id", async (request, response) => {
+  const param = Number(request.params.id);
+
+  const data = await fs.readFile("./data/artists.json");
+  const artists = JSON.parse(data);
+  const result = artists.find(artist => Number(artist.id) === Number(param));
+
+  result.favorite = !result.favorite;
+  
+  await fs.writeFile("./data/artists.json", JSON.stringify(artists));
 
   response.json(artists);
 });

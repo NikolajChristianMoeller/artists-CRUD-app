@@ -19,30 +19,47 @@ function sortByOption(sortValue) {
   } 
 }
 
-function filterByRace(inputValue) {
-  inputValue = inputValue.toLowerCase();
-  if (inputValue !== "filterall") {
-    let filteredList = artistList.filter(artist => artist.race.toLowerCase().includes(inputValue));
-    if (filteredList.length !== 0) {
-      return filteredList;
-    } else {
-      return (filteredList = []);
-    }
-  } else {
-    return artistList;
+// function filterByRace(inputValue) {
+//   inputValue = inputValue.toLowerCase();
+//   if (inputValue !== "filterall") {
+//     let filteredList = artistList.filter(artist => artist.race.toLowerCase().includes(inputValue));
+//     if (filteredList.length !== 0) {
+//       return filteredList;
+//     } else {
+//       return (filteredList = []);
+//     }
+//   } else {
+//     return artistList;
+//   }
+// }
+
+
+// function filteredArtistList() {
+//   const checkbox = document.querySelector("#filter-fav").checked;
+//   console.log(checkbox);
+//   if (checkbox === false) {
+//     const filteredList = artists.slice().filter(artist => artist.published === true);
+//     showArtistsFiltered(filteredList);
+//   } else {
+//     showArtists();
+//   }
+// }
+
+function showArtistsFiltered(filteredArtist) {
+  document.querySelector("#form-create-artist").innerHTML = "";
+  for (const artistList of filteredArtist) {
+    const html = /*html*/ `
+        <article>
+            <img src=${post.image} alt="post.caption" />
+            <h2>${post.caption}</h2>
+            <p>Likes: ${post.likes}</p>
+        </article>
+        `;
+    document.querySelector("#form-create-artist").insertAdjacentHTML("beforeend", html);
   }
 }
 
-function prepareData(dataObject) {
-  const artistArray = [];
-  for (const key in dataObject) {
-    const artistObject = dataObject[key];
-    artistObject.id = key;
-    artistArray.push(artistObject);
-  }
-  console.log(artistArray);
-  return artistArray;
-}
+
 
 // export prepareData
-export { prepareData, filterByRace, sortByOption, searchByName };
+export { sortByOption, searchByName };

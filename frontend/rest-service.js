@@ -1,11 +1,9 @@
-import { prepareData } from "./helpers.js";
-
 const endpoint = "http://localhost:3000";
 
 async function getArtists() {
   const response = await fetch(`${endpoint}/artists`);
   const data = await response.json();
-  return prepareData(data);
+  return data;
 }
 
 async function createArtist(name, image, birthDate, activeSince, genres, labels, website, shortDescription) {
@@ -64,4 +62,12 @@ async function deleteArtist(artistObject) {
   return response;
 }
 
-export { getArtists, createArtist, updateArtist, deleteArtist };
+async function favoriteArtist(artistObject) {
+  const id = artistObject.id;
+  const response = await fetch(`${endpoint}/artists/${id}`, {
+    method: "PATCH",
+  });
+  return response;
+}
+
+export { favoriteArtist, getArtists, createArtist, updateArtist, deleteArtist };

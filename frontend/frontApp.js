@@ -1,5 +1,5 @@
-import { getArtists, createArtist, updateArtist, deleteArtist } from "./rest-service.js";
-import { filterByRace, sortByOption, searchByName } from "./helpers.js";
+import { favoriteArtist, getArtists, createArtist, updateArtist, deleteArtist } from "./rest-service.js";
+import { sortByOption, searchByName } from "./helpers.js";
 
 
 // const endpoint = "/backend/data/artists.json";
@@ -200,7 +200,21 @@ function showArtist(artistObject) {
 
   document.querySelector("#artists article:last-child .btn-delete").addEventListener("click", () => deleteArtistClicked(artistObject));
   document.querySelector("#artists article:last-child .btn-update").addEventListener("click", () => updateClicked(artistObject));
+  document.querySelector("#artists article:last-child .btn-favorite").addEventListener("click", () => favoriteClicked(artistObject));
 }
+
+async function favoriteClicked(artistObject) {
+  const response = await favoriteArtist(artistObject)
+  
+  
+  if (response.ok) {
+    updateArtistsGrid();
+  } else {
+    document.querySelector("#dialog-failed-to-update").showModal();
+  }
+
+}
+
 
 function showArtistModal(artistObject) {
   const modal = document.querySelector("#artist-modal");
