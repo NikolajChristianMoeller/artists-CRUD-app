@@ -66,9 +66,11 @@ How to use the Frontend
 
 1. Sort: Sort artists based on selected properties.
 
-2. Favorite: Sorts artists by the true or false method
+2. Favorite: Sorts artists by the true or false method.
 
 3. Search: Search the app for a desire artist you want to have the app show.
+
+4. Click on the desired artist to show various information about the artist.
 
 
 
