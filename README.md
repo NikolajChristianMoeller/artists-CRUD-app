@@ -44,9 +44,19 @@ Usage
 * Refer to the project documentation or README for specific usage instructions, if available.
 
 
+
+
+
+
+
 How to install and run the app
 
-1. Download the files
+1. Download the files (express and cors, make sure you have node installed on your computer!). Type hereafter: 
+
+    npm install express cors
+
+This will install express and cors to your system and this will be needed to run the application via front- and backend.
+
 2. Open up your terminal, either in VS code or your normal terminal.
 3. http://localhost:3000 will be the port you will be using. Open the browser and put in:
 
