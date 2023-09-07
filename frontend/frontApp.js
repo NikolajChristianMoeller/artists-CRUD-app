@@ -214,7 +214,6 @@ async function favoriteClicked(artistObject) {
 
 }
 
-
 function showArtistModal(artistObject) {
   const modal = document.querySelector("#artist-modal");
   modal.querySelector("#artist-image").src = artistObject.image;

@@ -4,23 +4,21 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="#" type="image/x-icon" />
+    <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="/frontend/app.css" />
     <title>Artists CRUD App</title>
   </head>
   <body>
     <header>
-      <h2>Artists</h2>
+      <h3>Artists CRUD App</h3>        
+      <button id="btn-create-artist">Create artist</button>
+      <form id="searchbyname">
+        <input type="search" id="input-search" placeholder="Search by name">
+      </form>
     </header>
-
-    <section>
-      <div id="navbar">
-        <button id="btn-create-artist">Create artist</button>
-        <form id="searchbyname">
-          <input type="search" id="input-search" placeholder="Search by name" />
-        </form>
-        <div class="tools-grid">
-          <label for="sortby">Sort by:</label>
+  <main>
+    <div class="tools-grid">
+        <label for="sortby">Sort by:        
           <form id="sortby" name="sortby">
             <select name="sortbyselect" id="sortbyselect">
               <option value="name">Name</option>
@@ -28,10 +26,11 @@
               <option value="website">Website</option>
             </select>
           </form>
+        </label>
 
-          <label for="filter">Filter by:</label>
-          <form id="filter" name="filter">
-            <select name="filterselect" id="filterselect">
+        <label for="filter">Filter by:
+           <form id="filter" name="filter">
+            <select>
               <option value="filterall">All</option>
               <option value="Pop">Pop</option>
               <option value="Hip Hop">Hip Hop</option>
@@ -39,125 +38,134 @@
               <option value="Dance">Dance</option>
             </select>
           </form>
+        </label>
+        <label for="favorite">Favorite:
+        <select id="filterFavorite">
+              <option value="filterall">All Artists</option>
+              <option value="favorite">Favorites</option>
+            </select>
 
-          <label for="favorite">Favorite:</label>
-          <select id="filterFavorite">
-            <option value="filterall">All Artists</option>
-            <option value="favorite">Favorites</option>
-          </select>
-        </div>
-      </div>
-    </section>
-
-    <main>
-      <div id="artists" class="grid-container"></div>
-    </main>
-
-    <section>
-      <dialog id="artist-modal">
-        <img id="artist-image" src="" alt="Artist Image" />
-        <h3 id="artist-name"></h3>
-        <p>Birth Date: <span id="artist-birth"></span></p>
-        <p>Active Since: <span id="artist-active-since"></span></p>
-        <p>Genres: <span id="artist-genres"></span></p>
-        <p>Labels: <span id="artist-labels"></span></p>
-        <p>Website: <span id="artist-website"></span></p>
-        <p>Short Description: <span id="artist-description"></span></p>
-
-        <form method="dialog">
-          <button>Close</button>
-        </form>
-      </dialog>
-
-      <dialog id="dialog-create-artist">
-        <div class="create-dialog-container">
-          <h2 class="create-dialog-head">Create new artist</h2>
-          <form id="form-create-artist" method="dialog" class="create-dialog-form">
-            <label for="name"
-              >Name
-              <input type="text" name="name" id="artist-name" placeholder="Input artist's name" size="50" required />
-            </label>
-
-            <label for="image">Image <input type="url" name="image" id="image" placeholder="Input artist's image" size="50" required /> </label>
-
-            <label for="birthDate"
-              >Date of Birth <input type="text" name="birthDate" id="birthDate" placeholder="Input artist's date of birth" size="50" />
-            </label>
-
-            <label for="activeSince"
-              >Active Since <input type="text" name="activeSince" id="activeSince" placeholder="Input artist's active since" size="50" />
-            </label>
-
-            <label for="genres">Genres <input type="text" name="genres" id="genres" placeholder="Input artist's genres" size="50" /> </label>
-
-            <label for="labels">Labels <input type="text" name="labels" id="labels" placeholder="Input artist's labels" size="50" /> </label>
-
-            <label for="website">Website <input type="text" name="website" id="website" placeholder="Input artist's website" size="50" /> </label>
-
-            <label for="shortDescription"
-              >Short Description
-              <input type="text" name="shortDescription" id="shortDescription" placeholder="Input artist's description" size="50" />
-            </label>
-
-            <button class="btn-cancel">Close</button>
-            <p class="error-message hide">Error Message Placeholder</p>
-            <button>Create artist</button>
+        <!-- <label for="favorite">Favorites
+           <form id="favorite" name="favorite">
+            <select>
+              <option value="favorites">Favorites</option>
+            </select>
           </form>
-        </div>
-      </dialog>
+        </label> -->
 
-      <!-- dialog - delete post -->
-      <dialog id="dialog-delete-artist">
+            <!-- <form id="filter-form">
+                <label for="filter-fav">Show Favorite Artists</label>
+                <input type="checkbox" name="filter-fav" id="filter-fav">
+            </form> -->
+
+      </div>
+
+        <h2>Artists</h2>
+        <section id="artists" class="grid-container"></section>
+</main>
+
+<dialog id="artist-modal">
+  <img id="artist-image" src="">
+  <h3 id="artist-name"></h3>
+  <p>Birth Date: <span id="artist-birth"></span></p>
+  <p>Active Since: <span id="artist-active-since"></span></p>
+  <p>Genres: <span id="artist-genres"></span></p>
+  <p>Labels: <span id="artist-labels"></span></p>
+  <p>Website: <span id="artist-website"></span></p>
+  <p>Short Description: <span id="artist-description"></span></p>
+
+  <form method="dialog">
+    <button>Close</button>
+  </form>
+</dialog>
+
+  <dialog id="dialog-create-artist">
+    <div class="create-dialog-container">
+      <h2 class="create-dialog-head">Create new artist</h2>
+      <form id="form-create-artist" method="dialog" class="create-dialog-form">
+        <label for="name">Name
+          <input type="text" name="name" id="artist-name" placeholder="Input artist's name" size="50" required/>
+        </label>
+
+        <label for="image">Image <input type="url" name="image" id="image"placeholder="Input artist's image" size="50" required/>
+        </label>
+
+        <label for="birthDate">Date of Birth <input type="text" name="birthDate" id="birthDate" placeholder="Input artist's date of birth" size="50"/>
+        </label>
+
+        <label for="activeSince">Active Since <input type="text" name="activeSince" id="activeSince" placeholder="Input artist's active since" size="50"/>
+        </label>
+
+        <label for="genres">Genres <input type="text" name="genres" id="genres" placeholder="Input artist's genres" size="50"/>
+        </label>
+
+        <label for="labels">Labels <input type="text" name="labels" id="labels" placeholder="Input artist's labels" size="50"/>
+        </label>
+
+        <label for="website">Website <input type="text" name="website" id="website" placeholder="Input artist's website" size="50"/>
+        </label>
+
+        <label for="shortDescription">Short Description <input type="text" name="shortDescription" id="shortDescription" placeholder="Input artist's description" size="50"/>
+        </label>
+
+        <button class="btn-cancel">Close</button>
+        <p class="error-message hide">Error Message Placeholder</p>
+        <button>Create artist</button>
+      </form>
+  </div>
+</dialog>
+
+                <!-- dialog - delete post -->
+  <dialog id="dialog-delete-artist">
         <h2>Do you want to delete an artist?</h2>
         <p id="dialog-delete-artist-title">Name of the artist</p>
         <form method="dialog" id="form-delete-artist">
-          <button type="button" class="btn-cancel" id="cancelDelete">No</button>
-          <button>Yes</button>
+        <button type="button" class="btn-cancel" id="cancelDelete">No</button>
+        <button>Yes</button>
         </form>
-      </dialog>
+    </dialog>
 
-      <dialog id="dialog-delete-feedback">
-        <p id="dialog-delete-feedback-message">Artist is deleted</p>
-      </dialog>
+  <dialog id="dialog-delete-feedback">
+    <p id="dialog-delete-feedback-message">Artist is deleted</p>
+  </dialog>
 
-      <dialog id="dialog-update-artist">
-        <h2>Update artist</h2>
-        <form id="form-update-artist" method="dialog">
-          <label for="name">Name</label>
-          <input type="text" name="name" />
+  <dialog id="dialog-update-artist">
+      <h2>Update artist</h2>
+      <form id="form-update-artist" method="dialog">
+        <label for="name">Name</label>
+        <input type="text" name="name" />
 
-          <label for="image">Image</label>
-          <input type="url" name="image" />
+        <label for="image">Image</label>
+        <input type="url" name="image" />
 
-          <label for="birthDate">Date of Birth</label>
-          <input type="text" name="birthDate" />
+        <label for="birthDate">Date of Birth</label>
+        <input type="text" name="birthDate" />
 
-          <label for="activeSince">Active Since</label>
-          <input type="text" name="activeSince" />
+        <label for="activeSince">Active Since</label>
+        <input type="text" name="activeSince" />
 
-          <label for="genres">Genres</label>
-          <input type="text" name="genres" />
+        <label for="genres">Genres</label>
+        <input type="text" name="genres" />
 
-          <label for="labels">Labels</label>
-          <input type="text" name="labels" />
+        <label for="labels">Labels</label>
+        <input type="text" name="labels" />
 
-          <label for="website">Website</label>
-          <input type="text" name="website" />
+        <label for="website">Website</label>
+        <input type="text" name="website" />
 
-          <label for="shortDescription">Short Description</label>
-          <input type="text" name="shortDescription" />
+        <label for="shortDescription">Short Description</label>
+        <input type="text" name="shortDescription" />
 
-          <button class="btn-cancel">Close</button>
-          <button>Update</button>
-        </form>
-      </dialog>
-
-      <dialog id="dialog-failed-to-update">
-        <p>Artist Update Failed</p>
         <button class="btn-cancel">Close</button>
-      </dialog>
-    </section>
+        <button>Update</button>
+      </form>
+    </dialog>
 
-    <script src="/frontend/frontApp.js" type="module"></script>
+    <dialog id="dialog-failed-to-update">
+      <p>Artist Update Failed</p>
+      <button class="btn-cancel">Close</button>
+    </dialog>
+
+    <script src="/frontend/frontApp.js"type="module"></script>
   </body>
 </html>
