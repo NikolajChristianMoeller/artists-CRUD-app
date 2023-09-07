@@ -22,14 +22,12 @@ app.get("/artists/:id", async (request, response) => {
   const id = Number(request.params.id);
   const data = await fs.readFile("./data/artists.json");
   const artists = JSON.parse(data);
-  const result = artists.find(artist => artist.id === id);
-  console.log("Get artist");
-  console.log(result);
+  const result = artists.find((artist) => artist.id === id);
 
   if (!result) {
-    response.status(404).json({ error: "Artist not found!" });
+    response.status(404).json({ error: "Artist was not found!" });
   } else {
-    response.json(result);
+    response.json(result); // dette giver det pågældende artist som respons
   }
 });
 
@@ -37,72 +35,120 @@ app.get("/artists/:id", async (request, response) => {
 app.get("/artists", async (request, response) => {
   const data = await fs.readFile("./data/artists.json");
   const artists = JSON.parse(data);
-  response.json(artists);
+  
+  if (!artists) {
+    return res.status(404).json({ error: "No artist was found" });
+  }
+  return response.json(artists);
 });
 
 // POST/CREATE new artist
 app.post("/artists", async (request, response) => {
   const newArtist = request.body;
-
   newArtist.id = new Date().getTime();
+  newArtist.favorite = false;
 
   const data = await fs.readFile("./data/artists.json");
   const artists = JSON.parse(data);
+  
+  console.log(artists);
 
   artists.push(newArtist);
   console.log(newArtist);
-  fs.writeFile("./data/artists.json", JSON.stringify(artists));
-  response.json(artists);
+
+   if (!newArtist) {
+     res.status(400).json({ error: "Nothing has been received. Write something else" });
+   } else {
+     await fs.writeFile("./data/artists.json", JSON.stringify(artists));
+     response.json(artists);
+   }
 });
 
 // PUT/UPDATE artist
 app.put("/artists/:id", async (request, response) => {
+  const data = await fs.readFile(".data/artists.json");
+  
+  const artists = JSON.parse(data);
+  
   const id = Number(request.params.id);
 
-  const data = await fs.readFile("./data/artists.json");
-  const artists = JSON.parse(data);
+  const newArtist = artists.filter((artist) => Number(artist.id) !== Number(id)); 
+  newArtist.push(request.body);
 
-  let artistUpdate = artists.find(artist => artist.id !== id);
 
-  artistUpdate.push(request.body);
+  // let artistUpdate = artists.filter(artist => Number(artist.id) !== id);
+  // artistUpdate.push(request.body);
+  // fs.writeFile("./data/artists.json", JSON.stringify(artistUpdate));
+  // response.json(artistUpdate);
 
-  fs.writeFile("./data/artists.json", JSON.stringify(artistUpdate));
-  response.json(artistUpdate);
-
-  
-  /*
-  if (!result) {
-  response.status(404).json({ error: "Artist not found!" });
-  } else {
-  response.json(result);
-  } 
-*/
+   if (newArtist === artists) {
+     response.status(404).json({ error: "No artist was found" });
+   } else {
+     await fs.writeFile("artists.json", JSON.stringify(newArtist));
+     response.json(newArtist);
+   }
 });
 
 // DELETE artist
 app.delete("/artists/:id", async (request, response) => {
-  const id = Number(request.params.id);
-
   const data = await fs.readFile("./data/artists.json");
+  
   const artists = JSON.parse(data);
 
-  const newArtists = artists.filter(artist => artist.id !== id);
-  await fs.writeFile("./data/artists.json", JSON.stringify(newArtists));
+  const id = Number(request.params.id);
 
-  response.json(artists);
+  const newArtist = artists.filter(artist => Number(artist.id) !== id);
+
+  if (!newArtist) {
+    response.status(404).json({ error: "No artist was found" });
+  } else {
+    await fs.writeFile("artists.json", JSON.stringify(newArtist));
+    console.log(newArtist);
+    response.json(newArtist);
+  }
+
+
+
+
+  // const newArtists = artists.filter(artist => artist.id !== id);
+  // await fs.writeFile("./data/artists.json", JSON.stringify(newArtists));
+
+  // response.json(artists);
 });
 
 // FAVORITE artist
 app.patch("/artists/:id", async (request, response) => {
-  const param = Number(request.params.id);
+  const id = Number(req.params.id);
 
-  const data = await fs.readFile("./data/artists.json");
-  const artists = JSON.parse(data);
-  const result = artists.find(artist => Number(artist.id) === Number(param));
+  const artistList = await fs.readFile(".data/artists.json");
+  const artists = JSON.parse(artistList);
 
-  result.favorite = !result.favorite;
+  const result = artists.find(artist => Number(artist.id) === id);
+  if (result.favorite === false) {
+    result.favorite = true;
+  } else if (result.favorite === true) {
+    result.favorite = false;
+  }
+
+  console.log(artists);
+
+  if (!result) {
+    response.status(404).json({ error: "No artist was found" });
+  } else {
+    await fs.writeFile(".data/artists.json", JSON.stringify(artists));
+
+    response.json(artists);
+  }
   
-  await fs.writeFile("./data/artists.json", JSON.stringify(artists));
+  // const param = Number(request.params.id);
 
-  response.json(artists);
+  // const data = await fs.readFile("./data/artists.json");
+  // const artists = JSON.parse(data);
+  // const result = artists.find(artist => Number(artist.id) === Number(param));
+
+  // result.favorite = !result.favorite;
+  
+  // await fs.writeFile("./data/artists.json", JSON.stringify(artists));
+
+  // response.json(artists);
 });

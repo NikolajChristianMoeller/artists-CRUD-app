@@ -1,5 +1,4 @@
 /* Set basic styles */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -141,7 +140,7 @@ p {
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 1em;
   padding: 1em;
 }
@@ -342,8 +341,3 @@ dialog p {
   padding: 0;
   margin: 0;
 }
-
-
-
-
-

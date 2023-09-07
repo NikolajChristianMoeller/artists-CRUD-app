@@ -19,47 +19,41 @@ function sortByOption(sortValue) {
   } 
 }
 
-// function filterByRace(inputValue) {
-//   inputValue = inputValue.toLowerCase();
-//   if (inputValue !== "filterall") {
-//     let filteredList = artistList.filter(artist => artist.race.toLowerCase().includes(inputValue));
-//     if (filteredList.length !== 0) {
-//       return filteredList;
-//     } else {
-//       return (filteredList = []);
-//     }
-//   } else {
-//     return artistList;
-//   }
-// }
-
-
-// function filteredArtistList() {
-//   const checkbox = document.querySelector("#filter-fav").checked;
-//   console.log(checkbox);
-//   if (checkbox === false) {
-//     const filteredList = artists.slice().filter(artist => artist.published === true);
-//     showArtistsFiltered(filteredList);
-//   } else {
-//     showArtists();
-//   }
-// }
-
-function showArtistsFiltered(filteredArtist) {
-  document.querySelector("#form-create-artist").innerHTML = "";
-  for (const artistList of filteredArtist) {
-    const html = /*html*/ `
-        <article>
-            <img src=${post.image} alt="post.caption" />
-            <h2>${post.caption}</h2>
-            <p>Likes: ${post.likes}</p>
-        </article>
-        `;
-    document.querySelector("#form-create-artist").insertAdjacentHTML("beforeend", html);
+function filter(inputValue) {
+  let filteredList;
+  if (inputValue !== "filterall") {
+    if (inputValue === "Pop") {
+      filteredList = artistList.filter(artist => artist.genres.includes(inputValue));
+    } else if (inputValue === "Hip-Hop") {
+      filteredList = artistList.filter(artist => artist.genres.includes(inputValue));
+    } else if (inputValue === "R&B") {
+      filteredList = artistList.filter(artist => artist.genres.includes(inputValue));
+    } else if (inputValue === "Dance") {
+      filteredList = artistList.filter(artist => artist.genres.includes(inputValue));
+    }
+    if (filteredList.length !== 0) {
+      return filteredList;
+    } else {
+      return (filteredList = []);
+    }
+  } else {
+    return artistList;
   }
 }
 
 
+function filterFavorite(inputValue) {
+  let filteredList;
+  if (inputValue !== "filterall") {
+    if (inputValue === "favorite") {
+      filteredList = artistList.filter(artist => artist.favorite === true);
+    }
+    if (filteredList.length !== 0) {
+      return filteredList;
+    } else return (filteredList = []);
+  } else {
+    return artistList;
+  }
+}
 
-// export prepareData
-export { sortByOption, searchByName };
+export { filter, filterFavorite, sortByOption, searchByName };

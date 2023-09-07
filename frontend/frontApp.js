@@ -1,5 +1,5 @@
 import { favoriteArtist, getArtists, createArtist, updateArtist, deleteArtist } from "./rest-service.js";
-import { sortByOption, searchByName } from "./helpers.js";
+import { filter, filterFavorite, sortByOption, searchByName } from "./helpers.js";
 
 
 // const endpoint = "/backend/data/artists.json";
@@ -18,7 +18,8 @@ function initApp() {
   document.querySelector("#sortbyselect").addEventListener("change", event => showArtists(sortByOption(event.target.value)));
   document.querySelector("#input-search").addEventListener("keyup", event => showArtists(searchByName(event.target.value)));
   document.querySelector("#input-search").addEventListener("search", event => showArtists(searchByName(event.target.value)));
-  document.querySelector("#filterby").addEventListener("change", event => showArtists(filterByRace(event.target.value)));
+  document.querySelector("#filter").addEventListener("change", event => showArtists(filter(event.target.value)));
+  document.querySelector("#filterFavorite").addEventListener("change", event => showArtists(filterFavorite(event.target.value)));
 }
 
 function cancelCreate(event) {
@@ -102,7 +103,7 @@ async function updateArtistClicked(event) {
 
   //puts in data from from passes it to updateartist
 
-  const response = await updateArtist(id, name, image, birthDate , activeSince, genres, labels, website, shortDescription); //match the parameters in updatepost!!!
+  const response = await updateArtist(id, name, image, birthDate, activeSince, genres, labels, website, shortDescription); //match the parameters in updatepost!!!
   if (response.ok) {
     document.querySelector("#dialog-update-artist").close();
     updateArtistsGrid();
@@ -192,9 +193,7 @@ function showArtist(artistObject) {
     `;
   document.querySelector("#artists").insertAdjacentHTML("beforeend", html);
 
-  const gridItem = document.querySelector("#artists article:last-child .clickable");
-
-  gridItem.addEventListener("click", () => {
+  document.querySelector("#artists article:last-child .clickable").addEventListener("click", () => {
     showArtistModal(artistObject);
   });
 
@@ -210,7 +209,7 @@ async function favoriteClicked(artistObject) {
   if (response.ok) {
     updateArtistsGrid();
   } else {
-    document.querySelector("#dialog-failed-to-update").showModal();
+    console.log(response.status, response.statusText);
   }
 
 }

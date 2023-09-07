@@ -28,8 +28,8 @@
           </form>
         </label>
 
-        <label for="filterby">Filter by:
-           <form id="filterby" name="filterby">
+        <label for="filter">Filter by:
+           <form id="filter" name="filter">
             <select>
               <option value="filterall">All</option>
               <option value="pop">Pop</option>
@@ -40,18 +40,23 @@
           </form>
         </label>
 
-        <label for="favorite">Favorites
+        <select id="filterFavorite">
+              <option value="filterall">All Artists</option>
+              <option value="favorite">Favorites</option>
+            </select>
+
+        <!-- <label for="favorite">Favorites
            <form id="favorite" name="favorite">
             <select>
               <option value="favorites">Favorites</option>
             </select>
           </form>
-        </label>
+        </label> -->
 
-            <form id="filter-form">
+            <!-- <form id="filter-form">
                 <label for="filter-fav">Show Favorite Artists</label>
                 <input type="checkbox" name="filter-fav" id="filter-fav">
-            </form>
+            </form> -->
 
       </div>
 
