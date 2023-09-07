@@ -24,7 +24,7 @@ Here's a simple guide to get started:
 
 5 - Have fun!
 
-6. Also make sure that to read the FURPS+ document, visit my github repository on by clicking on the following link below:
+6 -  Also make sure that to read the FURPS+ document, visit my github repository on by clicking on the following link below:
 
 https://github.com/NikolajChristianMoeller/artists-CRUD-app
 
