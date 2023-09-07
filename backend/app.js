@@ -66,7 +66,7 @@ app.post("/artists", async (request, response) => {
 
 // PUT/UPDATE artist
 app.put("/artists/:id", async (request, response) => {
-  const data = await fs.readFile(".data/artists.json");
+  const data = await fs.readFile("./data/artists.json");
   
   const artists = JSON.parse(data);
   
@@ -74,6 +74,7 @@ app.put("/artists/:id", async (request, response) => {
 
   const newArtist = artists.filter((artist) => Number(artist.id) !== Number(id)); 
   newArtist.push(request.body);
+  console.log(request.body);
 
 
   // let artistUpdate = artists.filter(artist => Number(artist.id) !== id);
@@ -84,7 +85,7 @@ app.put("/artists/:id", async (request, response) => {
    if (newArtist === artists) {
      response.status(404).json({ error: "No artist was found" });
    } else {
-     await fs.writeFile("artists.json", JSON.stringify(newArtist));
+     await fs.writeFile("./data/artists.json", JSON.stringify(newArtist));
      response.json(newArtist);
    }
 });
@@ -102,7 +103,7 @@ app.delete("/artists/:id", async (request, response) => {
   if (!newArtist) {
     response.status(404).json({ error: "No artist was found" });
   } else {
-    await fs.writeFile("artists.json", JSON.stringify(newArtist));
+    await fs.writeFile("./data/artists.json", JSON.stringify(newArtist));
     console.log(newArtist);
     response.json(newArtist);
   }
@@ -118,9 +119,9 @@ app.delete("/artists/:id", async (request, response) => {
 
 // FAVORITE artist
 app.patch("/artists/:id", async (request, response) => {
-  const id = Number(req.params.id);
+  const id = Number(request.params.id);
 
-  const artistList = await fs.readFile(".data/artists.json");
+  const artistList = await fs.readFile("./data/artists.json");
   const artists = JSON.parse(artistList);
 
   const result = artists.find(artist => Number(artist.id) === id);
@@ -135,7 +136,7 @@ app.patch("/artists/:id", async (request, response) => {
   if (!result) {
     response.status(404).json({ error: "No artist was found" });
   } else {
-    await fs.writeFile(".data/artists.json", JSON.stringify(artists));
+    await fs.writeFile("./data/artists.json", JSON.stringify(artists));
 
     response.json(artists);
   }

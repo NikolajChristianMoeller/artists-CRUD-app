@@ -24,7 +24,7 @@ function filter(inputValue) {
   if (inputValue !== "filterall") {
     if (inputValue === "Pop") {
       filteredList = artistList.filter(artist => artist.genres.includes(inputValue));
-    } else if (inputValue === "Hip-Hop") {
+    } else if (inputValue === "Hip Hop") {
       filteredList = artistList.filter(artist => artist.genres.includes(inputValue));
     } else if (inputValue === "R&B") {
       filteredList = artistList.filter(artist => artist.genres.includes(inputValue));

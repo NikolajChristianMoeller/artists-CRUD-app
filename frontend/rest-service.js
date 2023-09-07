@@ -32,7 +32,9 @@ async function createArtist(name, image, birthDate, activeSince, genres, labels,
 //  Updates an existing artist
 async function updateArtist(id, name, image, birthDate, activeSince, genres, labels, website, shortDescription) {
   // artist object we update
+  console.log(id);
   const artistToUpdate = {
+    id: id,
     name: name,
     image: image,
     birthDate: birthDate,
@@ -44,12 +46,14 @@ async function updateArtist(id, name, image, birthDate, activeSince, genres, lab
   };
   // Converts the JS object to JSON string
   const json = JSON.stringify(artistToUpdate);
+  console.log(artistToUpdate);
   // PUT fetch request with JSON in the body. Calls the specific element in resource
   const response = await fetch(`${endpoint}/artists/${id}`, {
     method: "PUT",
     body: json,
     headers: { "Content-Type": "application/json" },
   });
+  console.log(response);
   // Checks if response is ok - if the response is successful
   return response;
 }

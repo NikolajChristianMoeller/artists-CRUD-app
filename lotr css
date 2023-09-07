@@ -1,4 +1,4 @@
-/* Set basic styles */
+Set basic styles
 * {
   box-sizing: border-box;
   margin: 0;
