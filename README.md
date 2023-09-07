@@ -11,9 +11,17 @@ Installation
 Here's a simple guide to get started:
 
 1 - Clone the project and open it in your preferred code editor.
-2 - In your code editor's terminal, run the command npm install express cors to install the necessary dependencies.
+
+2 - In your code editor's terminal, run the following command to install the necessary dependencies.
+
+        npm install express cors
+
 3 - Navigate to the directory where the node_modules are installed.
-4 - While inside the node_modules directory, run npm start in the terminal to start the application.
+
+4 - While inside the node_modules directory type in the terminal to start the application:
+
+    run npm start
+
 5 - Have fun!
 
 6. Also make sure that to read the FURPS+ document, visit my github repository on by clicking on the following link below:
