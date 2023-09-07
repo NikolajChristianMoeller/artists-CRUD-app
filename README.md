@@ -1,126 +1,46 @@
-This his how you install my app!
+Music Artist Fullstack Management Web Application
 
-This guide will walk you through the installation process for my CRUD web application. This application allows you to manage a list of artists to look up various information about them.
+Overview
 
-Prerequisites
+This comprehensive full-stack web application empowers users to manage and explore information about music artists. The application boasts a backend and a user-friendly frontend, harnessing technologies and coding principles. Smooth communication between the backend and frontend is achieved through a REST API.
 
-Before you begin, ensure you have the following prerequisites installed on your system:
+I have also made a backup file for the artists.json if that should be needed.
 
-1. Web Server: You need a web server environment browser! Like Google Chrome, Firefox or Safari.
+Installation
 
-2. Database: A relational database system like MySQL, PostgreSQL, or SQLite to store data.
+Here's a simple guide to get started:
 
-3. PHP: A server-side scripting language like PHP to handle server-side logic. Ensure it's installed and configured with your web server.
+1 - Clone the project and open it in your preferred code editor.
+2 - In your code editor's terminal, run the command npm install express cors to install the necessary dependencies.
+3 - Navigate to the directory where the node_modules are installed.
+4 - While inside the node_modules directory, run npm start in the terminal to start the application.
+5 - Have fun!
 
-4. Git (Optional): Git is helpful for cloning the project repository if it's hosted on a version control platform like GitHub.
+6. Also make sure that to read the FURPS+ document, visit my github repository on by clicking on the following link below:
 
-Installation Steps
+https://github.com/NikolajChristianMoeller/artists-CRUD-app
 
-1. Clone the Repository (if using Git): git clone <repository-url>
+Licensing
 
-If you don't have Git, you can download the project as a ZIP file and extract it to your web server's document root.
+This application is an open-source project, freely available for use by anyone to use.
 
-2.  Database Setup:
-    * Create a new database for the application.
-    * Import the database schema included in the project (usually found in a .sql file in the project's database or sql directory).
+Backend
+Implementation:
+The backend uses the power of Node.js and Express.js to deliver a REST API. Key features include:
 
-3. Configuration:
-    * Locate the configuration file (often named config.php or similar) in the project's root directory.
-    * Update the database connection settings with your database credentials (e.g., host, username, password, database name).
+A comprehensive set of routes with endpoints for various HTTP methods, including GET, POST, PUT/PATCH, and DELETE.
+Successful implementation of CRUD (Create, Read, Update, Delete) operations for interacting with a JSON file that serves as the data source.
+The ability for users to retrieve a complete list of artists and access specific artist details by providing a unique ID.
 
-4.  Web Server Configuration:
-    * Ensure your web server is running.
-    * Configure your web server to point to the project's root directory as the document root.
-    * Restart your web server to apply the changes.
+Data Structure:
+The data is sourced from a JSON file, with artist objects containing, at a minimum, the following properties: name, birthdate, activeSince, genres, labels, website, image, and shortDescription.
 
-5.  Access the Application:
-    * Open your web browser.
-    * Enter the URL where the application is hosted (e.g., http://localhost3000).
-    * You should now be able to access and use my CRUD app.
+Frontend
+User Interface:
+The frontend is meticulously crafted using HTML, CSS, and JavaScript. It offers users a seamless experience, with the following features:
 
-Usage
-
-* Use the application to create, read, update, and delete items as needed.
-* Refer to the project documentation or README for specific usage instructions, if available.
-
-
-
-
-
-
-
-How to install and run the app
-
-1. Download the files (express and cors, make sure you have node installed on your computer!). Type hereafter: 
-
-    npm install express cors
-
-This will install express and cors to your system and this will be needed to run the application via front- and backend.
-
-2. Open up your terminal, either in VS code or your normal terminal.
-3. http://localhost:3000 will be the port you will be using. Open the browser and put in:
-
-    http://localhost:3000
-
-How to use the Frontend
-
-1. Sort: Sort artists based on selected properties.
-
-2. Favorite: Sorts artists by the true or false method.
-
-3. Search: Search the app for a desire artist you want to have the app show.
-
-4. Click on the desired artist to show various information about the artist.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-My first project for 2nd semester.
-
-How to run my app:
-
-To start the app you need to run the following commands:
-
-1. Open up the terminal and write:
-    
-    cd .\artists-CRUD-app\
-
-2. Install all the modules with:
-
-    npm install
-
-3. Start the app by typing:
-
-    npm start
-
-4. The app should be running!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Efficient CRUD operations for managing artist information.
+Intuitive filtering and sorting based on user-selected parameters.
+A convenient favorite artist feature, enabling users to mark and access their preferred artists.
+A responsive and visually appealing user interface, designed using CSS Grid and related HTML elements.
+Modular code organization, ensuring maintainability and scalability.

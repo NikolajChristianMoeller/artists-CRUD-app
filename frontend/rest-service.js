@@ -1,12 +1,15 @@
 const endpoint = "http://localhost:3000";
 
+// Function to retrieve a list of artists from the server
 async function getArtists() {
   const response = await fetch(`${endpoint}/artists`);
   const data = await response.json();
   return data;
 }
 
+// Function to create a new artist on the server
 async function createArtist(name, image, birthDate, activeSince, genres, labels, website, shortDescription) {
+  // Create a new artist object with the provided information
   const newArtist = {
     name: name,
     image: image,
@@ -17,8 +20,11 @@ async function createArtist(name, image, birthDate, activeSince, genres, labels,
     website: website,
     shortDescription: shortDescription,
   };
-  console.log(newArtist);
+
+  // Convert the artist object to a JSON string
   const json = JSON.stringify(newArtist);
+
+  // Send a POST request to create the new artist on the server
   const response = await fetch(`${endpoint}/artists`, {
     method: "POST",
     body: json,
@@ -26,13 +32,13 @@ async function createArtist(name, image, birthDate, activeSince, genres, labels,
       "Content-Type": "application/json",
     },
   });
+
   return response;
 }
 
-//  Updates an existing artist
+// Function to update an existing artist on the server
 async function updateArtist(id, name, image, birthDate, activeSince, genres, labels, website, shortDescription) {
-  // artist object we update
-  console.log(id);
+  // Create an artist object with the provided information and the artist's ID
   const artistToUpdate = {
     id: id,
     name: name,
@@ -44,34 +50,43 @@ async function updateArtist(id, name, image, birthDate, activeSince, genres, lab
     website: website,
     shortDescription: shortDescription,
   };
-  // Converts the JS object to JSON string
+
+  // Convert the artist object to a JSON string
   const json = JSON.stringify(artistToUpdate);
-  console.log(artistToUpdate);
-  // PUT fetch request with JSON in the body. Calls the specific element in resource
+
+  // Send a PUT request to update the artist on the server
   const response = await fetch(`${endpoint}/artists/${id}`, {
     method: "PUT",
     body: json,
     headers: { "Content-Type": "application/json" },
   });
-  console.log(response);
-  // Checks if response is ok - if the response is successful
+
   return response;
 }
 
+// Function to delete an artist from the server
 async function deleteArtist(artistObject) {
   const id = artistObject.id;
+
+  // Send a DELETE request to remove the artist from the server
   const response = await fetch(`${endpoint}/artists/${id}`, {
     method: "DELETE",
   });
+
   return response;
 }
 
+// Function to mark an artist as a favorite on the server (assuming PATCH is used for this purpose)
 async function favoriteArtist(artistObject) {
   const id = artistObject.id;
+
+  // Send a PATCH request to mark the artist as a favorite on the server
   const response = await fetch(`${endpoint}/artists/${id}`, {
     method: "PATCH",
   });
+
   return response;
 }
 
+// Export the functions for use in other modules
 export { favoriteArtist, getArtists, createArtist, updateArtist, deleteArtist };
